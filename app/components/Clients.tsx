@@ -4,7 +4,7 @@ export default function Clients() {
         { name: "CityBossMotors", logo: "NX" },
         { name: "CityBossRealtors", logo: "AX" },
         { name: "MobiTower", logo: "ST" },
-        { name: "Vertex", logo: "VX" },
+        { name: "Nick Arts Studio", logo: "VX" },
         { name: "Orbit", logo: "OR" },
     ];
 
