@@ -5,6 +5,7 @@ import Services from "./components/Services";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import WebsiteScanner from "./components/Scanner/WebsiteScanner";
+import OptimizationShowcase from "./components/BeforeAfter/OptimizationShowcase";
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
       <Hero />
       <Clients />
       <Services />
+      <OptimizationShowcase />
 
       <WebsiteScanner />
 
