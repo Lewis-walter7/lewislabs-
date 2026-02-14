@@ -4,6 +4,7 @@ import Clients from "./components/Clients";
 import Services from "./components/Services";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
+import WebsiteScanner from "./components/Scanner/WebsiteScanner";
 
 export default function Home() {
   return (
@@ -12,6 +13,8 @@ export default function Home() {
       <Hero />
       <Clients />
       <Services />
+
+      <WebsiteScanner />
 
       {/* Additional sections can be added here (Portfolio, About, Testimonials) */}
 
