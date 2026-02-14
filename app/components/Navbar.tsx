@@ -25,7 +25,7 @@ export default function Navbar() {
                     }`}
             >
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className={`glass rounded-2xl px-6 py-3 flex items-center justify-between transition-all duration-300 ${scrolled ? "bg-black/80 shadow-2xl border-white/10" : "bg-transparent border-transparent"
+                    <div className={`glass rounded-2xl px-6 py-3 flex items-center justify-between transition-all duration-300 bg-black/80 backdrop-blur-md border border-white/10 ${scrolled ? "shadow-2xl" : ""
                         }`}>
                         <Link href="/" className="flex items-center gap-3">
                             <div className="relative w-10 h-10 rounded-xl overflow-hidden shadow-lg border border-white/10">

@@ -219,7 +219,7 @@ export default function PhoneScreen() {
                             {activeApp === "Calculator" && <CalculatorApp onBack={handleHomeBoxClick} isDarkMode={isDarkMode} />}
                             {activeApp === "Settings" && <SettingsApp onBack={handleHomeBoxClick} isDarkMode={isDarkMode} onThemeChange={setIsDarkMode} />}
                             {activeApp === "Notes" && <NotesApp onBack={handleHomeBoxClick} isDarkMode={isDarkMode} />}
-                            {activeApp === "Camera" && <CameraApp onBack={handleHomeBoxClick} />}
+                            {activeApp === "Camera" && <CameraApp onBack={handleHomeBoxClick} isDarkMode={isDarkMode} />}
                         </motion.div>
                     )}
                 </AnimatePresence>

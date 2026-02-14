@@ -9,13 +9,18 @@ interface NotesAppProps {
 
 export default function NotesApp({ onBack, isDarkMode }: NotesAppProps) {
     return (
-        <div className="flex flex-col h-full bg-gradient-to-b from-yellow-50 to-yellow-100 text-gray-800 relative">
+        <div className={`flex flex-col h-full relative ${isDarkMode
+                ? 'bg-gradient-to-b from-yellow-50 to-yellow-100 text-gray-800'
+                : 'bg-gradient-to-b from-slate-700 to-slate-800 text-gray-100'
+            }`}>
             {/* Header */}
-            <div className="flex items-center justify-between p-4 bg-yellow-200/50">
-                <button onClick={onBack} className="text-orange-600 hover:text-orange-700 text-xl">
+            <div className={`flex items-center justify-between p-4 ${isDarkMode ? 'bg-yellow-200/50' : 'bg-slate-600/50'
+                }`}>
+                <button onClick={onBack} className={`text-xl ${isDarkMode ? 'text-orange-600 hover:text-orange-700' : 'text-blue-400 hover:text-blue-300'
+                    }`}>
                     ←
                 </button>
-                <div className="font-bold text-yellow-900">Notes</div>
+                <div className={`font-bold ${isDarkMode ? 'text-yellow-900' : 'text-slate-200'}`}>Notes</div>
                 <div className="w-6"></div>
             </div>
 
@@ -27,7 +32,8 @@ export default function NotesApp({ onBack, isDarkMode }: NotesAppProps) {
                     className="space-y-4"
                 >
                     {/* Title */}
-                    <div className="font-bold text-2xl mb-6 border-b-2 border-yellow-400 pb-2" style={{ fontFamily: 'Bradley Hand, cursive' }}>
+                    <div className={`font-bold text-2xl mb-6 border-b-2 pb-2 ${isDarkMode ? 'border-yellow-400' : 'border-slate-500'
+                        }`} style={{ fontFamily: 'Bradley Hand, cursive' }}>
                         Project Checklist
                     </div>
 
@@ -49,14 +55,16 @@ export default function NotesApp({ onBack, isDarkMode }: NotesAppProps) {
                             <span className="text-green-600 text-2xl">✓</span>
                             <span>On-time delivery</span>
                         </div>
-                        <div className="flex items-start gap-3 mt-6 pt-4 border-t-2 border-yellow-400">
+                        <div className={`flex items-start gap-3 mt-6 pt-4 border-t-2 ${isDarkMode ? 'border-yellow-400' : 'border-slate-500'
+                            }`}>
                             <span className="text-2xl">→</span>
                             <span className="font-bold">Lewis Labs ✨</span>
                         </div>
                     </div>
 
                     {/* Footer Note */}
-                    <div className="mt-8 pt-4 border-t border-yellow-400 text-sm text-gray-600 italic">
+                    <div className={`mt-8 pt-4 border-t text-sm italic ${isDarkMode ? 'border-yellow-400 text-gray-600' : 'border-slate-500 text-gray-300'
+                        }`}>
                         "The best code is code that just works."
                     </div>
                 </motion.div>

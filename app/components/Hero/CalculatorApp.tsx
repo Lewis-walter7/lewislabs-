@@ -97,10 +97,12 @@ export default function CalculatorApp({ onBack, isDarkMode }: CalculatorAppProps
     );
 
     return (
-        <div className="flex flex-col h-full bg-black text-white p-4 relative">
+        <div className={`flex flex-col h-full p-4 relative ${isDarkMode ? 'bg-black text-white' : 'bg-gradient-to-br from-gray-100 to-gray-200 text-gray-900'
+            }`}>
             {/* Header */}
             <div className="flex items-center gap-3 mb-4">
-                <button onClick={onBack} className="text-orange-500 hover:text-orange-400 text-xl">
+                <button onClick={onBack} className={`text-xl ${isDarkMode ? 'text-orange-500 hover:text-orange-400' : 'text-blue-600 hover:text-blue-700'
+                    }`}>
                     ←
                 </button>
                 <div className="font-bold">Calculator</div>
@@ -126,28 +128,28 @@ export default function CalculatorApp({ onBack, isDarkMode }: CalculatorAppProps
 
             {/* Buttons */}
             <div className="grid grid-cols-4 gap-2">
-                <Button value="C" onClick={handleClear} className="bg-gray-600 hover:bg-gray-500" />
-                <Button value="CE" onClick={handleClearEntry} className="bg-gray-600 hover:bg-gray-500" />
+                <Button value="C" onClick={handleClear} className={isDarkMode ? "bg-gray-600 hover:bg-gray-500" : "bg-gray-300 hover:bg-gray-400 text-gray-900"} />
+                <Button value="CE" onClick={handleClearEntry} className={isDarkMode ? "bg-gray-600 hover:bg-gray-500" : "bg-gray-300 hover:bg-gray-400 text-gray-900"} />
                 <Button value="÷" onClick={() => handleOperator("÷")} className="bg-orange-500 hover:bg-orange-400" />
                 <Button value="×" onClick={() => handleOperator("×")} className="bg-orange-500 hover:bg-orange-400" />
 
-                <Button value="7" onClick={() => handleNumber("7")} className="bg-gray-700 hover:bg-gray-600" />
-                <Button value="8" onClick={() => handleNumber("8")} className="bg-gray-700 hover:bg-gray-600" />
-                <Button value="9" onClick={() => handleNumber("9")} className="bg-gray-700 hover:bg-gray-600" />
+                <Button value="7" onClick={() => handleNumber("7")} className={isDarkMode ? "bg-gray-700 hover:bg-gray-600" : "bg-white hover:bg-gray-50 border border-gray-300"} />
+                <Button value="8" onClick={() => handleNumber("8")} className={isDarkMode ? "bg-gray-700 hover:bg-gray-600" : "bg-white hover:bg-gray-50 border border-gray-300"} />
+                <Button value="9" onClick={() => handleNumber("9")} className={isDarkMode ? "bg-gray-700 hover:bg-gray-600" : "bg-white hover:bg-gray-50 border border-gray-300"} />
                 <Button value="-" onClick={() => handleOperator("-")} className="bg-orange-500 hover:bg-orange-400" />
 
-                <Button value="4" onClick={() => handleNumber("4")} className="bg-gray-700 hover:bg-gray-600" />
-                <Button value="5" onClick={() => handleNumber("5")} className="bg-gray-700 hover:bg-gray-600" />
-                <Button value="6" onClick={() => handleNumber("6")} className="bg-gray-700 hover:bg-gray-600" />
+                <Button value="4" onClick={() => handleNumber("4")} className={isDarkMode ? "bg-gray-700 hover:bg-gray-600" : "bg-white hover:bg-gray-50 border border-gray-300"} />
+                <Button value="5" onClick={() => handleNumber("5")} className={isDarkMode ? "bg-gray-700 hover:bg-gray-600" : "bg-white hover:bg-gray-50 border border-gray-300"} />
+                <Button value="6" onClick={() => handleNumber("6")} className={isDarkMode ? "bg-gray-700 hover:bg-gray-600" : "bg-white hover:bg-gray-50 border border-gray-300"} />
                 <Button value="+" onClick={() => handleOperator("+")} className="bg-orange-500 hover:bg-orange-400" />
 
-                <Button value="1" onClick={() => handleNumber("1")} className="bg-gray-700 hover:bg-gray-600" />
-                <Button value="2" onClick={() => handleNumber("2")} className="bg-gray-700 hover:bg-gray-600" />
-                <Button value="3" onClick={() => handleNumber("3")} className="bg-gray-700 hover:bg-gray-600" />
+                <Button value="1" onClick={() => handleNumber("1")} className={isDarkMode ? "bg-gray-700 hover:bg-gray-600" : "bg-white hover:bg-gray-50 border border-gray-300"} />
+                <Button value="2" onClick={() => handleNumber("2")} className={isDarkMode ? "bg-gray-700 hover:bg-gray-600" : "bg-white hover:bg-gray-50 border border-gray-300"} />
+                <Button value="3" onClick={() => handleNumber("3")} className={isDarkMode ? "bg-gray-700 hover:bg-gray-600" : "bg-white hover:bg-gray-50 border border-gray-300"} />
                 <Button value="=" onClick={handleEquals} className="bg-orange-500 hover:bg-orange-400 row-span-2" />
 
-                <Button value="0" onClick={() => handleNumber("0")} className="bg-gray-700 hover:bg-gray-600" span />
-                <Button value="." onClick={handleDecimal} className="bg-gray-700 hover:bg-gray-600" />
+                <Button value="0" onClick={() => handleNumber("0")} className={isDarkMode ? "bg-gray-700 hover:bg-gray-600" : "bg-white hover:bg-gray-50 border border-gray-300"} span />
+                <Button value="." onClick={handleDecimal} className={isDarkMode ? "bg-gray-700 hover:bg-gray-600" : "bg-white hover:bg-gray-50 border border-gray-300"} />
             </div>
         </div>
     );

@@ -5,9 +5,10 @@ import { motion, AnimatePresence } from "framer-motion";
 
 interface CameraAppProps {
     onBack: () => void;
+    isDarkMode: boolean;
 }
 
-export default function CameraApp({ onBack }: CameraAppProps) {
+export default function CameraApp({ onBack, isDarkMode }: CameraAppProps) {
     const [photo, setPhoto] = useState(false);
     const [flash, setFlash] = useState(false);
 
@@ -25,7 +26,8 @@ export default function CameraApp({ onBack }: CameraAppProps) {
     };
 
     return (
-        <div className="flex flex-col h-full bg-black text-white relative">
+        <div className={`flex flex-col h-full text-white relative ${isDarkMode ? 'bg-black' : 'bg-gray-900'
+            }`}>
             {/* Flash Effect */}
             <AnimatePresence>
                 {flash && (
@@ -40,7 +42,8 @@ export default function CameraApp({ onBack }: CameraAppProps) {
 
             {/* Header */}
             <div className="flex items-center justify-between p-4 z-10">
-                <button onClick={onBack} className="text-yellow-400 hover:text-yellow-300 text-xl">
+                <button onClick={onBack} className={`text-xl ${isDarkMode ? 'text-yellow-400 hover:text-yellow-300' : 'text-blue-400 hover:text-blue-300'
+                    }`}>
                     ←
                 </button>
                 <div className="font-bold">Camera</div>
@@ -57,7 +60,10 @@ export default function CameraApp({ onBack }: CameraAppProps) {
                 </div>
 
                 {/* "Live view" - gradient + message */}
-                <div className="absolute inset-0 bg-gradient-to-br from-purple-900 via-blue-900 to-black flex items-center justify-center">
+                <div className={`absolute inset-0 flex items-center justify-center ${isDarkMode
+                        ? 'bg-gradient-to-br from-purple-900 via-blue-900 to-black'
+                        : 'bg-gradient-to-br from-indigo-800 via-purple-800 to-gray-900'
+                    }`}>
                     <div className="text-center space-y-4">
                         <div className="text-6xl">📸</div>
                         <div className="text-xl font-bold">Lewis Labs</div>
