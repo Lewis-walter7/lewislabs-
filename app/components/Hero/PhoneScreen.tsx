@@ -5,25 +5,28 @@ import { motion, AnimatePresence } from "framer-motion";
 import TicTacToe from "./TicTacToe";
 import Image from "next/image";
 import BugSquasher from "./BugSquasher";
+import MessagesApp from "./MessagesApp";
 
-type AppName = "TicTacToe" | "BugSquasher" | null;
+type AppName = "TicTacToe" | "BugSquasher" | "Messages" | null;
 
 export default function PhoneScreen() {
     const [activeApp, setActiveApp] = useState<AppName>(null);
     const [time, setTime] = useState("");
+    const [hasNotification, setHasNotification] = useState(true);
 
     useEffect(() => {
         const updateTime = () => {
             const now = new Date();
             setTime(now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
         };
-        updateTime(); // Initial set
+        updateTime();
         const timer = setInterval(updateTime, 1000);
         return () => clearInterval(timer);
     }, []);
 
     const handleOpenApp = (app: AppName) => {
         setActiveApp(app);
+        if (app === "Messages") setHasNotification(false);
     };
 
     const handleHomeBoxClick = () => {
@@ -47,12 +50,14 @@ export default function PhoneScreen() {
             {/* Content Area */}
             <div className="w-full h-full pt-8 pb-4 bg-[url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop')] bg-cover bg-center relative group">
 
-                {/* Interaction Hint */}
-                <div className="absolute inset-0 z-40 bg-black/40 flex flex-col items-center justify-center opacity-100 group-hover:opacity-0 transition-opacity duration-500 pointer-events-none">
-                    <div className="bg-black/50 backdrop-blur-md px-6 py-3 rounded-full border border-white/20 animate-bounce">
-                        <span className="text-white font-bold text-sm">👆 Tap to Play!</span>
+                {/* Interaction Hint - only show when no app is open */}
+                {!activeApp && (
+                    <div className="absolute inset-0 z-40 bg-black/40 flex flex-col items-center justify-center opacity-100 group-hover:opacity-0 transition-opacity duration-500 pointer-events-none">
+                        <div className="bg-black/50 backdrop-blur-md px-6 py-3 rounded-full border border-white/20 animate-bounce">
+                            <span className="text-white font-bold text-sm">👆 Tap to Play!</span>
+                        </div>
                     </div>
-                </div>
+                )}
 
                 <AnimatePresence mode="wait">
                     {!activeApp ? (
@@ -86,8 +91,24 @@ export default function PhoneScreen() {
                                 <span className="text-[10px] text-white font-medium drop-shadow-md">Bug Bash</span>
                             </button>
 
+                            {/* Messages Icon with Notification */}
+                            <button
+                                onClick={() => handleOpenApp("Messages")}
+                                className="flex flex-col items-center gap-1 group relative"
+                            >
+                                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center text-2xl shadow-lg border border-white/10 group-active:scale-95 transition-transform">
+                                    💬
+                                </div>
+                                {hasNotification && (
+                                    <div className="absolute top-0 right-1 w-5 h-5 bg-red-500 rounded-full flex items-center justify-center text-[10px] font-bold text-white border-2 border-black animate-pulse">
+                                        1
+                                    </div>
+                                )}
+                                <span className="text-[10px] text-white font-medium drop-shadow-md">Messages</span>
+                            </button>
+
                             {/* Placeholder Icons */}
-                            {[...Array(2)].map((_, i) => (
+                            {[...Array(1)].map((_, i) => (
                                 <div key={i} className="flex flex-col items-center gap-1 opacity-50 grayscale cursor-not-allowed">
                                     <div className="w-14 h-14 rounded-2xl bg-white/10 flex items-center justify-center text-2xl border border-white/5">
                                         ?
@@ -106,16 +127,19 @@ export default function PhoneScreen() {
                             exit={{ opacity: 0, y: 20 }}
                             className="w-full h-full bg-black relative"
                         >
-                            {/* Back/Home Indicator (in-app) */}
-                            <button
-                                onClick={handleHomeBoxClick}
-                                className="absolute top-4 left-4 z-40 text-white/50 hover:text-white p-2"
-                            >
-                                ← Back
-                            </button>
+                            {/* Back/Home Indicator (in-app) - hidden for Messages */}
+                            {activeApp !== "Messages" && (
+                                <button
+                                    onClick={handleHomeBoxClick}
+                                    className="absolute top-4 left-4 z-40 text-white/50 hover:text-white p-2"
+                                >
+                                    ← Back
+                                </button>
+                            )}
 
                             {activeApp === "TicTacToe" && <TicTacToe />}
                             {activeApp === "BugSquasher" && <BugSquasher />}
+                            {activeApp === "Messages" && <MessagesApp onBack={handleHomeBoxClick} />}
                         </motion.div>
                     )}
                 </AnimatePresence>
