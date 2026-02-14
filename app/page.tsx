@@ -6,6 +6,9 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import WebsiteScanner from "./components/Scanner/WebsiteScanner";
 import OptimizationShowcase from "./components/BeforeAfter/OptimizationShowcase";
+import TechGrid from "./components/TechStack/TechGrid";
+import TrustFactors from "./components/Trust/TrustFactors";
+import CompetitorSection from "./components/CompetitorAnalysis/CompetitorSection";
 
 export default function Home() {
   return (
@@ -15,7 +18,9 @@ export default function Home() {
       <Clients />
       <Services />
       <OptimizationShowcase />
-
+      <TechGrid />
+      <CompetitorSection />
+      <TrustFactors />
       <WebsiteScanner />
 
       {/* Additional sections can be added here (Portfolio, About, Testimonials) */}
