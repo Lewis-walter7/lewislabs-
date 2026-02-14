@@ -47,8 +47,20 @@ export default function Hero() {
 
                     {/* Right Side - Phone */}
                     <div className="relative z-20 animate-fade-in delay-500 flex justify-center lg:block mt-12 lg:mt-0">
-                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[100px] -z-10"></div>
-                        <PhoneScreen />
+                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] md:w-[400px] md:h-[400px] lg:w-[500px] lg:h-[500px] bg-primary/20 rounded-full blur-[100px] -z-10"></div>
+
+                        {/* Phone Component with constrained width */}
+                        <div className="max-w-[320px] sm:max-w-[360px] mx-auto">
+                            <PhoneScreen />
+                        </div>
+
+                        {/* Interaction Hint */}
+                        <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-sm text-muted/60 flex items-center gap-2 animate-pulse">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M12 5v14M5 12h14" />
+                            </svg>
+                            Tap to Play
+                        </div>
                     </div>
                 </div>
             </div>

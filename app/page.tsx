@@ -12,7 +12,7 @@ import CompetitorSection from "./components/CompetitorAnalysis/CompetitorSection
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-black selection:bg-primary/30 selection:text-white">
+    <main className="min-h-screen bg-black selection:bg-primary/30 selection:text-white overflow-x-hidden">
       <Navbar />
       <Hero />
       <Clients />

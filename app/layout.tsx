@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
 import "./globals.css";
+import CustomCursor from "./components/Cursor/CustomCursor";
+import SupportCountdown from "./components/Support/SupportCountdown";
 
 
 const outfit = Outfit({
@@ -21,6 +23,8 @@ export default function RootLayout({
   return (
     <html lang="en" className={`dark ${outfit.variable}`}>
       <body className="antialiased bg-background text-foreground">
+        <CustomCursor />
+        <SupportCountdown />
         {children}
       </body>
     </html>
