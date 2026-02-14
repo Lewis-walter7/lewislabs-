@@ -6,13 +6,20 @@ import TicTacToe from "./TicTacToe";
 import Image from "next/image";
 import BugSquasher from "./BugSquasher";
 import MessagesApp from "./MessagesApp";
+import CalculatorApp from "./CalculatorApp";
+import SettingsApp from "./SettingsApp";
+import NotesApp from "./NotesApp";
+import CameraApp from "./CameraApp";
 
-type AppName = "TicTacToe" | "BugSquasher" | "Messages" | null;
+type AppName = "TicTacToe" | "BugSquasher" | "Messages" | "Calculator" | "Settings" | "Notes" | "Camera" | null;
 
 export default function PhoneScreen() {
     const [activeApp, setActiveApp] = useState<AppName>(null);
     const [time, setTime] = useState("");
-    const [hasNotification, setHasNotification] = useState(true);
+    const [hasMessagesNotification, setHasMessagesNotification] = useState(true);
+    const [hasTicTacToeNotification, setHasTicTacToeNotification] = useState(true);
+    const [hasBugSquasherNotification, setHasBugSquasherNotification] = useState(true);
+    const [isDarkMode, setIsDarkMode] = useState(true);
 
     useEffect(() => {
         const updateTime = () => {
@@ -26,7 +33,9 @@ export default function PhoneScreen() {
 
     const handleOpenApp = (app: AppName) => {
         setActiveApp(app);
-        if (app === "Messages") setHasNotification(false);
+        if (app === "Messages") setHasMessagesNotification(false);
+        if (app === "TicTacToe") setHasTicTacToeNotification(false);
+        if (app === "BugSquasher") setHasBugSquasherNotification(false);
     };
 
     const handleHomeBoxClick = () => {
@@ -70,52 +79,119 @@ export default function PhoneScreen() {
                             className="grid grid-cols-4 gap-4 p-4 mt-8"
                         >
                             {/* TicTacToe Icon */}
-                            <button
+                            <motion.button
                                 onClick={() => handleOpenApp("TicTacToe")}
-                                className="flex flex-col items-center gap-1 group"
+                                className="flex flex-col items-center gap-1 group relative"
+                                whileTap={{ scale: 0.85 }}
+                                transition={{ type: "spring", stiffness: 400 }}
                             >
-                                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-400 to-purple-600 flex items-center justify-center text-2xl shadow-lg border border-white/10 group-active:scale-95 transition-transform">
+                                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-400 to-purple-600 flex items-center justify-center text-2xl shadow-lg border border-white/10">
                                     🎮
                                 </div>
+                                {hasTicTacToeNotification && (
+                                    <div className="absolute top-0 right-1 w-5 h-5 bg-red-500 rounded-full flex items-center justify-center text-[8px] font-bold text-white border-2 border-black">
+                                        !
+                                    </div>
+                                )}
                                 <span className="text-[10px] text-white font-medium drop-shadow-md">TicTacToe</span>
-                            </button>
+                            </motion.button>
 
                             {/* BugSquasher Icon */}
-                            <button
+                            <motion.button
                                 onClick={() => handleOpenApp("BugSquasher")}
-                                className="flex flex-col items-center gap-1 group"
+                                className="flex flex-col items-center gap-1 group relative"
+                                whileTap={{ scale: 0.85 }}
+                                transition={{ type: "spring", stiffness: 400 }}
                             >
-                                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-green-400 to-emerald-700 flex items-center justify-center text-2xl shadow-lg border border-white/10 group-active:scale-95 transition-transform">
+                                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-green-400 to-emerald-700 flex items-center justify-center text-2xl shadow-lg border border-white/10">
                                     🐛
                                 </div>
+                                {hasBugSquasherNotification && (
+                                    <div className="absolute top-0 right-1 w-5 h-5 bg-red-500 rounded-full flex items-center justify-center text-[8px] font-bold text-white border-2 border-black">
+                                        5
+                                    </div>
+                                )}
                                 <span className="text-[10px] text-white font-medium drop-shadow-md">Bug Bash</span>
-                            </button>
+                            </motion.button>
 
-                            {/* Messages Icon with Notification */}
-                            <button
+                            {/* Messages Icon */}
+                            <motion.button
                                 onClick={() => handleOpenApp("Messages")}
                                 className="flex flex-col items-center gap-1 group relative"
+                                whileTap={{ scale: 0.85 }}
+                                transition={{ type: "spring", stiffness: 400 }}
                             >
-                                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center text-2xl shadow-lg border border-white/10 group-active:scale-95 transition-transform">
+                                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center text-2xl shadow-lg border border-white/10">
                                     💬
                                 </div>
-                                {hasNotification && (
+                                {hasMessagesNotification && (
                                     <div className="absolute top-0 right-1 w-5 h-5 bg-red-500 rounded-full flex items-center justify-center text-[10px] font-bold text-white border-2 border-black animate-pulse">
                                         1
                                     </div>
                                 )}
                                 <span className="text-[10px] text-white font-medium drop-shadow-md">Messages</span>
-                            </button>
+                            </motion.button>
 
-                            {/* Placeholder Icons */}
-                            {[...Array(1)].map((_, i) => (
-                                <div key={i} className="flex flex-col items-center gap-1 opacity-50 grayscale cursor-not-allowed">
-                                    <div className="w-14 h-14 rounded-2xl bg-white/10 flex items-center justify-center text-2xl border border-white/5">
-                                        ?
-                                    </div>
-                                    <span className="text-[10px] text-white/50 font-medium">Coming Soon</span>
+                            {/* Calculator Icon */}
+                            <motion.button
+                                onClick={() => handleOpenApp("Calculator")}
+                                className="flex flex-col items-center gap-1 group"
+                                whileTap={{ scale: 0.85 }}
+                                transition={{ type: "spring", stiffness: 400 }}
+                            >
+                                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-orange-400 to-red-600 flex items-center justify-center text-2xl shadow-lg border border-white/10">
+                                    🧮
                                 </div>
-                            ))}
+                                <span className="text-[10px] text-white font-medium drop-shadow-md">Calculator</span>
+                            </motion.button>
+
+                            {/* Settings Icon */}
+                            <motion.button
+                                onClick={() => handleOpenApp("Settings")}
+                                className="flex flex-col items-center gap-1 group"
+                                whileTap={{ scale: 0.85 }}
+                                transition={{ type: "spring", stiffness: 400 }}
+                            >
+                                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-gray-400 to-gray-600 flex items-center justify-center text-2xl shadow-lg border border-white/10">
+                                    ⚙️
+                                </div>
+                                <span className="text-[10px] text-white font-medium drop-shadow-md">Settings</span>
+                            </motion.button>
+
+                            {/* Notes Icon */}
+                            <motion.button
+                                onClick={() => handleOpenApp("Notes")}
+                                className="flex flex-col items-center gap-1 group"
+                                whileTap={{ scale: 0.85 }}
+                                transition={{ type: "spring", stiffness: 400 }}
+                            >
+                                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-yellow-300 to-yellow-500 flex items-center justify-center text-2xl shadow-lg border border-white/10">
+                                    📝
+                                </div>
+                                <span className="text-[10px] text-white font-medium drop-shadow-md">Notes</span>
+                            </motion.button>
+
+                            {/* Camera Icon */}
+                            <motion.button
+                                onClick={() => handleOpenApp("Camera")}
+                                className="flex flex-col items-center gap-1 group"
+                                whileTap={{ scale: 0.85 }}
+                                transition={{ type: "spring", stiffness: 400 }}
+                            >
+                                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-gray-700 to-black flex items-center justify-center text-2xl shadow-lg border border-white/10">
+                                    📷
+                                </div>
+                                <span className="text-[10px] text-white font-medium drop-shadow-md">Camera</span>
+                            </motion.button>
+
+                            {/* Coming Soon Placeholder */}
+                            <div className="flex flex-col items-center gap-1 opacity-50 grayscale cursor-not-allowed">
+                                <div className="w-14 h-14 rounded-2xl bg-white/10 flex items-center justify-center text-2xl border border-white/5">
+                                    ?
+                                </div>
+                                <span className="text-[10px] text-white/50 font-medium">Soon</span>
+                            </div>
+
 
                         </motion.div>
                     ) : (
@@ -127,8 +203,8 @@ export default function PhoneScreen() {
                             exit={{ opacity: 0, y: 20 }}
                             className="w-full h-full bg-black relative"
                         >
-                            {/* Back/Home Indicator (in-app) - hidden for Messages */}
-                            {activeApp !== "Messages" && (
+                            {/* Back/Home Indicator (in-app) - hidden for apps with own navigation */}
+                            {activeApp !== "Messages" && activeApp !== "Calculator" && activeApp !== "Settings" && activeApp !== "Notes" && activeApp !== "Camera" && (
                                 <button
                                     onClick={handleHomeBoxClick}
                                     className="absolute top-4 left-4 z-40 text-white/50 hover:text-white p-2"
@@ -139,7 +215,11 @@ export default function PhoneScreen() {
 
                             {activeApp === "TicTacToe" && <TicTacToe />}
                             {activeApp === "BugSquasher" && <BugSquasher />}
-                            {activeApp === "Messages" && <MessagesApp onBack={handleHomeBoxClick} />}
+                            {activeApp === "Messages" && <MessagesApp onBack={handleHomeBoxClick} isDarkMode={isDarkMode} />}
+                            {activeApp === "Calculator" && <CalculatorApp onBack={handleHomeBoxClick} isDarkMode={isDarkMode} />}
+                            {activeApp === "Settings" && <SettingsApp onBack={handleHomeBoxClick} isDarkMode={isDarkMode} onThemeChange={setIsDarkMode} />}
+                            {activeApp === "Notes" && <NotesApp onBack={handleHomeBoxClick} isDarkMode={isDarkMode} />}
+                            {activeApp === "Camera" && <CameraApp onBack={handleHomeBoxClick} />}
                         </motion.div>
                     )}
                 </AnimatePresence>

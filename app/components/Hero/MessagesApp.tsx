@@ -19,9 +19,10 @@ const script: Message[] = [
 
 interface MessagesAppProps {
     onBack: () => void;
+    isDarkMode: boolean;
 }
 
-export default function MessagesApp({ onBack }: MessagesAppProps) {
+export default function MessagesApp({ onBack, isDarkMode }: MessagesAppProps) {
     const [messages, setMessages] = useState<Message[]>([]);
     const [isTyping, setIsTyping] = useState(false);
     const messagesContainerRef = useRef<HTMLDivElement>(null);
@@ -55,10 +56,11 @@ export default function MessagesApp({ onBack }: MessagesAppProps) {
     }, [messages, isTyping]);
 
     return (
-        <div className="flex flex-col h-full bg-white text-black relative">
+        <div className={`flex flex-col h-full relative ${isDarkMode ? 'bg-white text-black' : 'bg-gray-900 text-white'}`}>
             {/* Header */}
-            <div className="flex items-center gap-3 p-4 border-b border-gray-100 bg-white/80 backdrop-blur-md sticky top-0 z-10">
-                <button onClick={onBack} className="text-gray-600 hover:text-gray-800 text-xl">
+            <div className={`flex items-center gap-3 p-4 border-b backdrop-blur-md sticky top-0 z-10 ${isDarkMode ? 'border-gray-100 bg-white/80' : 'border-gray-700 bg-gray-800/80'
+                }`}>
+                <button onClick={onBack} className={`text-xl ${isDarkMode ? 'text-gray-600 hover:text-gray-800' : 'text-gray-400 hover:text-gray-200'}`}>
                     ←
                 </button>
                 <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-xs">
@@ -66,12 +68,12 @@ export default function MessagesApp({ onBack }: MessagesAppProps) {
                 </div>
                 <div className="flex-1">
                     <div className="font-bold text-sm">Lewis</div>
-                    <div className="text-[10px] text-gray-500">Active now</div>
+                    <div className={`text-[10px] ${isDarkMode ? 'text-gray-500' : 'text-gray-400'}`}>Active now</div>
                 </div>
             </div>
 
             {/* Messages Area */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-gray-50/50">
+            <div ref={messagesContainerRef} className={`flex-1 overflow-y-auto p-4 space-y-3 ${isDarkMode ? 'bg-gray-50/50' : 'bg-gray-800/50'}`}>
                 {messages.map((msg) => (
                     <motion.div
                         key={msg.id}
@@ -81,8 +83,10 @@ export default function MessagesApp({ onBack }: MessagesAppProps) {
                     >
                         <div
                             className={`max-w-[80%] px-4 py-2 rounded-2xl text-sm shadow-sm ${msg.sender === "user"
-                                ? "bg-blue-500 text-white rounded-br-none"
-                                : "bg-white border border-gray-100 text-gray-800 rounded-bl-none"
+                                    ? "bg-blue-500 text-white rounded-br-none"
+                                    : isDarkMode
+                                        ? "bg-white border border-gray-100 text-gray-800 rounded-bl-none"
+                                        : "bg-gray-700 border border-gray-600 text-gray-100 rounded-bl-none"
                                 }`}
                         >
                             {msg.text}
@@ -96,7 +100,8 @@ export default function MessagesApp({ onBack }: MessagesAppProps) {
                         animate={{ opacity: 1, y: 0 }}
                         className="flex justify-start"
                     >
-                        <div className="bg-white border border-gray-100 px-4 py-3 rounded-2xl rounded-bl-none shadow-sm flex gap-1">
+                        <div className={`px-4 py-3 rounded-2xl rounded-bl-none shadow-sm flex gap-1 ${isDarkMode ? 'bg-white border border-gray-100' : 'bg-gray-700 border border-gray-600'
+                            }`}>
                             <span className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce [animation-delay:-0.3s]"></span>
                             <span className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce [animation-delay:-0.15s]"></span>
                             <span className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce"></span>
@@ -106,8 +111,8 @@ export default function MessagesApp({ onBack }: MessagesAppProps) {
             </div>
 
             {/* Input Area (Visual only) */}
-            <div className="p-3 border-t border-gray-100 bg-white">
-                <div className="bg-gray-100 rounded-full px-4 py-2 text-sm text-gray-400 cursor-not-allowed">
+            <div className={`p-3 border-t ${isDarkMode ? 'border-gray-100 bg-white' : 'border-gray-700 bg-gray-800'}`}>
+                <div className={`rounded-full px-4 py-2 text-sm cursor-not-allowed ${isDarkMode ? 'bg-gray-100 text-gray-400' : 'bg-gray-700 text-gray-500'}`}>
                     Type a message...
                 </div>
             </div>
