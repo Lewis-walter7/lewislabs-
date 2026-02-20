@@ -16,7 +16,7 @@ export default function Home() {
       <Navbar />
       <Hero />
       <Clients />
-      <Services />
+      {/* <Services /> */}
       <OptimizationShowcase />
       <TechGrid />
       <CompetitorSection />

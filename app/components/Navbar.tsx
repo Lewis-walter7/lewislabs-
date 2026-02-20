@@ -58,6 +58,7 @@ export default function Navbar() {
                                     src="/logo.png"
                                     alt="Lewis Labs Logo"
                                     fill
+                                    unoptimized
                                     className="object-cover"
                                 />
                             </div>
