@@ -1,30 +1,43 @@
 import { Resend } from 'resend';
 import { NextRequest, NextResponse } from 'next/server';
 import { EmailTemplate } from '../../components/EmailTemplate';
-
-const resend = new Resend(process.env.RESEND_API_KEY || 're_123');
+import { render } from '@react-email/render';
 
 export async function POST(req: NextRequest) {
     try {
+        const apiKey = process.env.RESEND_API_KEY;
+        if (!apiKey || apiKey === 're_123') {
+            console.error('RESEND_API_KEY is missing or using default');
+            return NextResponse.json({ error: 'Config Error: API Key missing' }, { status: 500 });
+        }
+
+        const resend = new Resend(apiKey);
         const { name, email, message } = await req.json();
 
         if (!name || !email || !message) {
             return NextResponse.json({ error: 'Missing fields' }, { status: 400 });
         }
 
+        const emailHtml = await render(<EmailTemplate name={name} email={email} message={message} />);
+
         const { data, error } = await resend.emails.send({
             from: 'Lewis Labs <onboarding@resend.dev>',
-            to: ['lewisindusa12@gmail.com'], // The user's email based on social links provided earlier
+            to: ['lewisindusa@gmail.com'], // Updated to requested inbox email
             subject: `New Contact from ${name}`,
-            react: <EmailTemplate name={name} email={email} message={message} />,
+            html: emailHtml,
         });
 
         if (error) {
-            return NextResponse.json({ error }, { status: 500 });
+            console.error('Resend Error:', error);
+            return NextResponse.json({ error, message: 'Resend failed to send email' }, { status: 500 });
         }
 
         return NextResponse.json(data);
     } catch (error) {
-        return NextResponse.json({ error }, { status: 500 });
+        console.error('API Send Catch Error:', error);
+        return NextResponse.json({
+            error: error instanceof Error ? error.message : String(error),
+            stack: error instanceof Error ? error.stack : undefined
+        }, { status: 500 });
     }
 }

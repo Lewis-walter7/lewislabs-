@@ -21,7 +21,6 @@ export default async function ProjectPage({ params }: Props) {
 
     return (
         <main className="min-h-screen bg-black selection:bg-primary/30 selection:text-white overflow-x-hidden">
-            <Navbar />
 
             {/* Project Hero - More Spacious and Cinematic */}
             <section className="relative pt-30 pb-20 overflow-hidden grid-background border-b border-white/5">
@@ -55,7 +54,7 @@ export default async function ProjectPage({ params }: Props) {
                             ))}
                         </h1>
 
-                        <div className="flex flex-col md:flex-row gap-12 items-start md:items-end justify-between">
+                        <div className="flex flex-col md:flex-row gap-12 items-center md:items-center justify-between">
                             <p className="text-2xl md:text-3xl text-muted/80 font-light leading-relaxed max-w-2xl">
                                 {project.longDescription}
                             </p>
@@ -163,7 +162,7 @@ export default async function ProjectPage({ params }: Props) {
 
                                     {/* Final CTA */}
                                     <Link
-                                        href="/contact"
+                                        href="/#contact"
                                         className="w-full gradient-primary p-4 rounded-2xl text-white font-black tracking-[0.2em] text-xs shadow-2xl shadow-primary/30 hover:scale-[1.03] active:scale-95 transition-all text-center uppercase"
                                     >
                                         Start Your Evolution

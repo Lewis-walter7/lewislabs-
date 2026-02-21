@@ -4,6 +4,7 @@ import "./globals.css";
 import CustomCursor from "./components/Cursor/CustomCursor";
 import SupportCountdown from "./components/Support/SupportCountdown";
 import ChatBot from "./components/Chat/ChatBot";
+import Navbar from "./components/Navbar";
 
 
 const outfit = Outfit({
@@ -25,6 +26,7 @@ export default function RootLayout({
     <html lang="en" className={`dark ${outfit.variable}`}>
       <body className="antialiased bg-background text-foreground">
         <CustomCursor />
+        <Navbar />
         <SupportCountdown />
         {children}
         <ChatBot />

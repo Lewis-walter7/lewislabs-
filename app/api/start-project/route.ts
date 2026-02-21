@@ -14,7 +14,7 @@ export async function POST(req: Request) {
         if (process.env.RESEND_API_KEY) {
             await resend.emails.send({
                 from: 'Lewis Labs <onboarding@lewislabs.co>', // Update with verified domain
-                to: ['lewis@lewislabs.co'], // Update with admin email
+                to: ['lewisindusa@gmail.com'], // Updated to requested inbox email
                 subject: `New Project Inquiry: ${name} (${company})`,
                 html: `
                 <h1>New Project Inquiry</h1>

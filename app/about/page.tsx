@@ -1,11 +1,9 @@
-import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Link from "next/link";
 
 export default function About() {
     return (
         <main className="min-h-screen bg-black grid-background selection:bg-primary/30 selection:text-white overflow-x-hidden">
-            <Navbar />
 
             {/* Hero Section */}
             <section className="relative pb-20 pt-32 overflow-hidden">
