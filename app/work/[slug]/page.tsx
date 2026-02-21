@@ -3,8 +3,41 @@ import Link from 'next/link';
 import Navbar from '@/app/components/Navbar';
 import Footer from '@/app/components/Footer';
 
+import { Metadata } from 'next';
+
 type Props = {
-    params: { slug: string }
+    params: Promise<{ slug: string }>
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+    const { slug } = await params;
+    const project = projects.find(p => p.slug === slug);
+
+    if (!project) return { title: 'Project Not Found' };
+
+    return {
+        title: project.title,
+        description: project.description,
+        openGraph: {
+            title: `${project.title} | Lewis Labs Case Study`,
+            description: project.description,
+            type: 'article',
+            url: `https://lewislabs.vercel.app/work/${slug}`,
+            images: [
+                {
+                    url: '/logo.png', // Ideally should use a project-specific image if available in data
+                    width: 1200,
+                    height: 630,
+                    alt: project.title,
+                },
+            ],
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title: project.title,
+            description: project.description,
+        },
+    };
 }
 
 export async function generateStaticParams() {
