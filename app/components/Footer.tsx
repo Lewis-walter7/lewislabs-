@@ -5,7 +5,9 @@ export default function Footer() {
     const footerLinks = {
         services: [
             { name: "Web Development", href: "/#services" },
+            { name: "iOS App Development", href: "/#services" },
             { name: "Android App Dev", href: "/#services" },
+            { name: "Game Development", href: "/#services" },
             { name: "UI/UX Design", href: "/#services" },
             { name: "Software Solutions", href: "/#services" },
             { name: "SEO Optimization", href: "/#services" },
@@ -37,6 +39,7 @@ export default function Footer() {
                                     src="/logo.png"
                                     alt="Lewis Labs Logo"
                                     fill
+                                    unoptimized
                                     className="object-cover"
                                 />
                             </div>

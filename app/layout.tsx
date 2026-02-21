@@ -3,6 +3,7 @@ import { Outfit } from "next/font/google";
 import "./globals.css";
 import CustomCursor from "./components/Cursor/CustomCursor";
 import SupportCountdown from "./components/Support/SupportCountdown";
+import ChatBot from "./components/Chat/ChatBot";
 
 
 const outfit = Outfit({
@@ -26,6 +27,7 @@ export default function RootLayout({
         <CustomCursor />
         <SupportCountdown />
         {children}
+        <ChatBot />
       </body>
     </html>
   );

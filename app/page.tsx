@@ -1,7 +1,6 @@
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import Clients from "./components/Clients";
-import Services from "./components/Services";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import WebsiteScanner from "./components/Scanner/WebsiteScanner";
@@ -9,6 +8,7 @@ import OptimizationShowcase from "./components/BeforeAfter/OptimizationShowcase"
 import TechGrid from "./components/TechStack/TechGrid";
 import TrustFactors from "./components/Trust/TrustFactors";
 import CompetitorSection from "./components/CompetitorAnalysis/CompetitorSection";
+import Services from "./components/Services";
 
 export default function Home() {
   return (
@@ -16,9 +16,9 @@ export default function Home() {
       <Navbar />
       <Hero />
       <Clients />
-      {/* <Services /> */}
-      <OptimizationShowcase />
-      <TechGrid />
+      <Services />
+      {/* <OptimizationShowcase /> */}
+      {/* <TechGrid /> */}
       <CompetitorSection />
       <TrustFactors />
       <WebsiteScanner />

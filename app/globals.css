@@ -4,8 +4,8 @@
 
 @theme {
   --color-primary: #8b5cf6;
-  --color-secondary: #0ea5e9;
-  --color-accent: #f43f5e;
+  --color-secondary: #7c3aed;
+  --color-accent: #c084fc;
   --color-muted: #a1a1aa;
 
   --font-outfit: var(--font-outfit);
@@ -99,7 +99,7 @@ body {
 }
 
 .gradient-primary {
-  background: linear-gradient(135deg, #8b5cf6 0%, #0ea5e9 100%);
+  background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
 }
 
 .hero-glow {
