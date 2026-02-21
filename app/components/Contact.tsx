@@ -42,11 +42,12 @@ export default function Contact() {
     };
 
     return (
-        <section id="contact" className="py-24 relative overflow-hidden">
+        <section id="contact" className="py-24 relative overflow-hidden grid-background">
+            <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black pointer-events-none"></div>
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[120px] -z-10"></div>
-            <div className="container mx-auto px-6">
+            <div className="container mx-auto px-6 relative z-10">
                 <div className="max-w-4xl mx-auto">
-                    <div className="glass p-8 md:p-16 rounded-[3rem] border-white/5 animate-fade-in">
+                    <div className="glass !bg-black p-8 md:p-16 rounded-[3rem] border-white/5 animate-fade-in shadow-2xl">
                         <div className="text-center mb-12">
                             <h2 className="text-4xl md:text-6xl font-bold outfit mb-6">Ready to build <span className="gradient-text">something great</span>?</h2>
                             <p className="text-xl text-muted max-w-2xl mx-auto font-light leading-relaxed">
@@ -95,6 +96,7 @@ export default function Contact() {
                                 <button
                                     type="submit"
                                     disabled={pending}
+                                    data-cursor="send"
                                     className="gradient-primary px-12 py-5 rounded-2xl font-bold text-white shadow-2xl shadow-primary/30 hover:scale-105 transition-all disabled:opacity-50 disabled:hover:scale-100 text-lg min-w-[200px]"
                                 >
                                     {pending ? "Sending..." : "Send Message"}

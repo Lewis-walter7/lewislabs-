@@ -8,8 +8,8 @@ interface Props {
 
 export default function ProjectCard({ project, index }: Props) {
     return (
-        <Link href={`/work/${project.slug}`} className="block group">
-            <div className="glass p-8 rounded-3xl border border-white/10 h-full hover:border-primary/50 transition-colors relative overflow-hidden">
+        <Link href={`/work/${project.slug}`} className="block group" data-cursor="view">
+            <div className="group relative p-6 !bg-black rounded-3xl overflow-hidden border border-white/5 hover:border-white/10 transition-all duration-500 shadow-2xl">
                 {/* Hover Gradient */}
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 

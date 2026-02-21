@@ -10,6 +10,7 @@ Lewis Labs Services:
 - iOS App Development: High-end iOS applications developed with Swift and SwiftUI, focusing on performance and Apple's design principles.
 - Android App Dev: Robust and feature-rich native Android applications developed with Kotlin.
 - Game Development: Immersive 2D and 3D gaming experiences using industry-leading engines like Unity or Unreal Engine.
+- Video Editing: Professional post-production, motion graphics, and cinematic storytelling for brands.
 - UI/UX Design: User-centric interface designs prioritizing aesthetics and usability.
 - SEO Optimization: Data-driven strategies for visibility and growth.
 - Web Maintenance: Support and security services.

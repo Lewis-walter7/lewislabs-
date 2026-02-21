@@ -39,7 +39,6 @@ export default function Navbar() {
         { href: "/#services", label: "Services" },
         { href: "/work", label: "Portfolio" },
         { href: "/about", label: "About" },
-        { href: "/dashboard-demo", label: "Portal" },
         { href: "/status", label: "Status", hasIndicator: true },
     ];
 

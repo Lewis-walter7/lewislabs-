@@ -54,8 +54,10 @@ export default function Hero() {
                             <PhoneScreen />
                         </div>
 
-                        {/* Interaction Hint */}
-                        <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-sm text-muted/60 flex items-center gap-2 animate-pulse">
+                        <div
+                            data-cursor="play"
+                            className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-sm text-muted/60 flex items-center gap-2 animate-pulse cursor-pointer"
+                        >
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                 <path d="M12 5v14M5 12h14" />
                             </svg>

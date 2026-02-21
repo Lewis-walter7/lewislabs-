@@ -4,10 +4,10 @@ import ComparisonTable from "./ComparisonTable";
 
 export default function CompetitorSection() {
     return (
-        <section className="py-24 px-6 bg-black relative">
+        <section className="py-24 px-6 relative overflow-hidden grid-background">
+            <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black pointer-events-none"></div>
             {/* Ambient Glow */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-primary/10 rounded-full blur-[120px] pointer-events-none"></div>
-
             <div className="max-w-7xl mx-auto relative z-10">
                 <div className="text-center mb-16">
                     <h2 className="text-3xl md:text-5xl font-bold mb-6">
@@ -18,7 +18,7 @@ export default function CompetitorSection() {
                     </p>
                 </div>
 
-                <div className="glass rounded-2xl border border-white/10 overflow-hidden shadow-2xl shadow-primary/5">
+                <div className="glass !bg-black rounded-2xl border border-white/10 overflow-hidden shadow-2xl shadow-primary/5">
                     <ComparisonTable />
                 </div>
 

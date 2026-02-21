@@ -26,8 +26,9 @@ const guarantees = [
 
 export default function TrustFactors() {
     return (
-        <section className="py-24 px-6 bg-black relative border-t border-white/5">
-            <div className="max-w-7xl mx-auto">
+        <section className="py-24 px-6 relative border-t border-white/5 grid-background">
+            <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black pointer-events-none"></div>
+            <div className="max-w-7xl mx-auto relative z-10">
                 <div className="text-center mb-16">
                     <h2 className="text-3xl md:text-5xl font-bold mb-6">
                         We take the <span className="bg-gradient-to-r from-green-400 to-emerald-600 bg-clip-text text-transparent">Risk</span>, you get the <span className="text-white">Reward</span>.
@@ -39,7 +40,7 @@ export default function TrustFactors() {
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     {guarantees.map((item, i) => (
-                        <div key={i} className="glass p-8 rounded-2xl border border-white/5 hover:border-green-500/30 transition-colors group relative overflow-hidden">
+                        <div key={i} className="glass !bg-black p-8 rounded-2xl border border-white/5 hover:border-green-500/30 transition-colors group relative overflow-hidden">
                             <div className="relative z-10">
                                 <div className="w-12 h-12 rounded-full bg-green-500/10 text-green-400 flex items-center justify-center mb-6 border border-green-500/20 group-hover:scale-110 transition-transform duration-300">
                                     {item.icon}

@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function About() {
     return (
-        <main className="min-h-screen bg-black selection:bg-primary/30 selection:text-white overflow-x-hidden">
+        <main className="min-h-screen bg-black grid-background selection:bg-primary/30 selection:text-white overflow-x-hidden">
             <Navbar />
 
             {/* Hero Section */}

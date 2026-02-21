@@ -8,6 +8,7 @@ export default function Footer() {
             { name: "iOS App Development", href: "/#services" },
             { name: "Android App Dev", href: "/#services" },
             { name: "Game Development", href: "/#services" },
+            { name: "Video Editing", href: "/#services" },
             { name: "UI/UX Design", href: "/#services" },
             { name: "Software Solutions", href: "/#services" },
             { name: "SEO Optimization", href: "/#services" },
@@ -16,7 +17,6 @@ export default function Footer() {
         company: [
             { name: "About Us", href: "/about" },
             { name: "Portfolio", href: "/work" },
-            { name: "Dashboard Demo", href: "/dashboard-demo" },
             { name: "Contact", href: "/#contact" },
         ],
         resources: [

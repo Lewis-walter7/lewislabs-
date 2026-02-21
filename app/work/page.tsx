@@ -10,15 +10,11 @@ export default function WorkPage() {
 
     const filteredProjects = projects.filter(project => {
         if (filter === 'All') return true;
-        if (filter === 'Web') return project.category.includes('Web');
-        if (filter === 'Mobile') return project.category.includes('Mobile');
-        if (filter === 'SaaS') return project.category.includes('SaaS');
-        if (filter === 'E-Commerce') return project.category.includes('E-Commerce');
-        return true;
+        return project.category.includes(filter);
     });
 
     return (
-        <main className="min-h-screen pt-32 pb-20 px-6 bg-black">
+        <main className="min-h-screen pt-32 pb-20 px-6 bg-black grid-background">
             <div className="max-w-7xl mx-auto">
                 <div className="mb-16">
                     <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6">
@@ -31,7 +27,7 @@ export default function WorkPage() {
 
                 {/* Filter Section */}
                 <div className="flex gap-4 mb-12 overflow-x-auto pb-4 scrollbar-hide">
-                    {['All', 'Web', 'Mobile', 'SaaS', 'E-Commerce'].map(item => (
+                    {['All', 'Web', 'E-Commerce', 'Marketplace', 'Real Estate'].map(item => (
                         <button
                             key={item}
                             onClick={() => setFilter(item)}

@@ -7,6 +7,7 @@ export default function CustomCursor() {
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
     const [isHovering, setIsHovering] = useState(false);
     const [isClicking, setIsClicking] = useState(false);
+    const [cursorMode, setCursorMode] = useState<string>('default');
     const cursorRef = useRef<HTMLDivElement>(null);
 
     // Track mouse position
@@ -25,6 +26,11 @@ export default function CustomCursor() {
                 target.closest('[data-magnetic]') !== null;
 
             setIsHovering(isInteractive);
+
+            // Detect cursor mode
+            const mode = target.getAttribute('data-cursor') ||
+                target.closest('[data-cursor]')?.getAttribute('data-cursor');
+            setCursorMode(mode || 'default');
         };
 
         const handleMouseDown = () => setIsClicking(true);
@@ -51,16 +57,26 @@ export default function CustomCursor() {
         return null;
     }
 
+    const getCursorLabel = () => {
+        switch (cursorMode) {
+            case 'view': return 'VIEW';
+            case 'plus': return '+';
+            case 'play': return 'PLAY';
+            case 'send': return 'SEND';
+            default: return '';
+        }
+    };
+
     return (
         <>
             {/* Main cursor */}
             <motion.div
                 ref={cursorRef}
-                className="custom-cursor fixed top-0 left-0 pointer-events-none z-[9999]"
+                className="custom-cursor fixed top-0 left-0 pointer-events-none z-[9999] flex items-center justify-center"
                 animate={{
-                    x: mousePosition.x - 16,
-                    y: mousePosition.y - 16,
-                    scale: isClicking ? 0.8 : isHovering ? 1.5 : 1,
+                    x: mousePosition.x,
+                    y: mousePosition.y,
+                    scale: isClicking ? 0.8 : isHovering ? 1.2 : 1,
                 }}
                 transition={{
                     type: "spring",
@@ -68,22 +84,37 @@ export default function CustomCursor() {
                     damping: 28,
                     mass: 0.5,
                 }}
+                style={{
+                    translateX: '-50%',
+                    translateY: '-50%',
+                }}
             >
-                <div
-                    className="w-8 h-8 rounded-full border-2 border-white"
-                    style={{
-                        mixBlendMode: 'difference',
+                <motion.div
+                    className={`rounded-full border border-white flex items-center justify-center transition-all duration-300 ${cursorMode !== 'default' ? 'w-16 h-16 bg-white' : 'w-8 h-8'
+                        }`}
+                    animate={{
+                        width: cursorMode !== 'default' ? 80 : 32,
+                        height: cursorMode !== 'default' ? 80 : 32,
                     }}
-                />
+                    style={{
+                        mixBlendMode: cursorMode !== 'default' ? 'normal' : 'difference',
+                    }}
+                >
+                    {cursorMode !== 'default' && (
+                        <span className="text-black text-[10px] font-black tracking-widest">
+                            {getCursorLabel()}
+                        </span>
+                    )}
+                </motion.div>
             </motion.div>
 
             {/* Trailing dot */}
             <motion.div
                 className="fixed top-0 left-0 pointer-events-none z-[9998]"
                 animate={{
-                    x: mousePosition.x - 2,
-                    y: mousePosition.y - 2,
-                    opacity: isHovering ? 0 : 1,
+                    x: mousePosition.x,
+                    y: mousePosition.y,
+                    opacity: isHovering || cursorMode !== 'default' ? 0 : 1,
                 }}
                 transition={{
                     type: "spring",
@@ -91,9 +122,13 @@ export default function CustomCursor() {
                     damping: 15,
                     mass: 0.1,
                 }}
+                style={{
+                    translateX: '-50%',
+                    translateY: '-50%',
+                }}
             >
                 <div
-                    className="w-1 h-1 rounded-full bg-white"
+                    className="w-1.5 h-1.5 rounded-full bg-white"
                     style={{
                         mixBlendMode: 'difference',
                     }}

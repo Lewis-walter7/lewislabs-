@@ -116,8 +116,9 @@ export default function WebsiteScanner() {
     };
 
     return (
-        <section className="py-24 relative overflow-hidden" id="audit">
-            <div className="container mx-auto px-6">
+        <section className="py-24 relative overflow-hidden grid-background" id="audit">
+            <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black pointer-events-none"></div>
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div className="max-w-4xl mx-auto text-center mb-12">
                     <h2 className="text-4xl md:text-5xl font-bold outfit mb-6">
                         Is your website <span className="text-red-500">losing customers?</span>
@@ -127,7 +128,7 @@ export default function WebsiteScanner() {
                     </p>
                 </div>
 
-                <div className="max-w-2xl mx-auto glass p-8 rounded-3xl border border-white/10 relative z-10">
+                <div className="glass !bg-black p-8 md:p-12 rounded-[2.5rem] border-white/5 relative z-10 shadow-2xl">
                     <form onSubmit={handleScan} className="flex flex-col md:flex-row gap-4">
                         <input
                             type="text"

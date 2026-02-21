@@ -17,14 +17,9 @@ export default function Home() {
       <Hero />
       <Clients />
       <Services />
-      {/* <OptimizationShowcase /> */}
-      {/* <TechGrid /> */}
       <CompetitorSection />
       <TrustFactors />
       <WebsiteScanner />
-
-      {/* Additional sections can be added here (Portfolio, About, Testimonials) */}
-
       <Contact />
 
       <Footer />

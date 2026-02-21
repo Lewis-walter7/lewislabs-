@@ -33,6 +33,14 @@ export default function Services() {
             glow: "hover:shadow-primary/10"
         },
         {
+            title: "Video Editing",
+            description: "Professional post-production, motion graphics, and cinematic storytelling to elevate your brand's narrative.",
+            icon: (
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-secondary"><path d="m22 8-6 4 6 4V8Z"></path><rect width="14" height="12" x="2" y="6" rx="2" ry="2"></rect></svg>
+            ),
+            glow: "hover:shadow-secondary/10"
+        },
+        {
             title: "UI/UX Design",
             description: "User-centric interface designs that prioritize aesthetics and usability to drive engagement and conversions.",
             icon: (
@@ -67,8 +75,9 @@ export default function Services() {
     ];
 
     return (
-        <section id="services" className="py-32 bg-black/50 relative border-y border-white/5">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section id="services" className="py-32 relative overflow-hidden grid-background">
+            <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black pointer-events-none"></div>
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div className="text-center mb-20 animate-fade-in">
                     <h2 className="text-4xl md:text-6xl font-bold outfit mb-6">Our <span className="gradient-text">Expertise</span></h2>
                     <p className="text-lg text-muted max-w-2xl mx-auto font-light">
@@ -80,8 +89,9 @@ export default function Services() {
                     {services.map((service, index) => (
                         <div
                             key={index}
-                            className={`glass glass-hover p-10 rounded-[2.5rem] border-white/5 transition-all duration-500 group ${service.glow} shadow-2xl shadow-transparent animate-fade-in`}
-                            style={{ animationDelay: `${0.1 * (index + 1)}s` }}
+                            data-cursor="plus"
+                            className={`glass !bg-black p-8 rounded-[2.5rem] border-white/5 hover:border-white/10 transition-all duration-500 group cursor-pointer relative overflow-hidden animate-fade-in ${service.glow}`}
+                            style={{ animationDelay: `${index * 0.1}s` }}
                         >
                             <div className="w-16 h-16 rounded-[1.5rem] bg-white/5 flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
                                 {service.icon}
