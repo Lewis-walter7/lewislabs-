@@ -108,8 +108,8 @@ export default function Footer() {
                 <div className="pt-6 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-xs text-muted uppercase tracking-widest font-semibold">
                     <p>© {new Date().getFullYear()} Lewis Labs. All rights reserved.</p>
                     <div className="flex gap-8">
-                        <Link href="#" className="hover:text-white transition-colors">Privacy Policy</Link>
-                        <Link href="#" className="hover:text-white transition-colors">Terms of Service</Link>
+                        <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
+                        <Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
                     </div>
                 </div>
             </div>
